@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :goals
   has_many :posted_comments, class_name: "Comment"
+  has_many :cheers
 
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)

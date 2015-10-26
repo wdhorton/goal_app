@@ -1,5 +1,11 @@
 <h1><%= @goal.description %></h1>
 
+<form id='cheer' action='<%= goal_cheers_url(@goal) %>' method='post'>
+  <%= auth_token %>
+  <button>Cheer</button>
+</form>
+Cheers:<%= @goal.cheers.count %>
+
 <% if current_user.id == @goal.user_id && !@goal.completed %>
 <form id='complete' action='<%= goal_url(@goal) %>' method='post'>
   <%= auth_token %>

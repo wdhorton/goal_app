@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   resource :session
 
-  resources :goals
+  resources :goals do
+    resources :cheers, only: [:create]
+  end
 
   resources :comments
 
