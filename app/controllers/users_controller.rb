@@ -32,9 +32,5 @@ class UsersController < ApplicationController
     params.require(:user).permit(:username, :password)
   end
 
-  def ensure_logged_in
-    unless logged_in?
-      redirect_to new_session_url
-    end
-  end
+
 end

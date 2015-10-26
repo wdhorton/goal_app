@@ -97,3 +97,28 @@ def log_in(username, password)
   fill_in "Password", with: password
   click_button "Sign In"
 end
+
+def log_in_william
+  sign_up("william", "password")
+  log_in("william", "password")
+end
+
+def log_in_damon
+  sign_up("damon", "password")
+  log_in("damon", "password")
+end
+
+def create_goal
+  visit '/goals'
+  click_link "Create Goal"
+  fill_in "Description", with: "My New Goal"
+  click_button "Create Goal"
+end
+
+def create_private_goal
+  visit '/goals'
+  click_link "Create Goal"
+  fill_in "Description", with: "My New Private Goal"
+  choose('Private')
+  click_button "Create Goal"
+end
