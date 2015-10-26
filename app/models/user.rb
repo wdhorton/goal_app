@@ -1,9 +1,12 @@
 class User < ActiveRecord::Base
+  include Commentable
+
   attr_reader :password
   after_initialize :ensure_session_token
 
   has_many :goals
-  
+  has_many :posted_comments, class_name: "Comment"
+
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)
     user.try(:valid_password?, password) ? user : nil

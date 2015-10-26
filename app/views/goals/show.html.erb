@@ -13,3 +13,21 @@
 
 <%= link_to "Edit Goal", edit_goal_url %>
 <%= button_to "Delete Goal", goal_url(@goal), method:"delete" %>
+
+<ul>
+  <% @goal.comments.each do |comment| %>
+    <li><%= comment.body %><br><em>author:</em> <%= comment.author.username %></li>
+  <% end %>
+</ul>
+
+<form action="<%= comments_url %>" method="post">
+  <%= auth_token %>
+  <input type='hidden' name='comment[commentable_id]' value='<%= @goal.id %>'>
+  <input type='hidden' name='comment[commentable_type]' value='Goal'>
+
+  <label>Comment:
+    <textarea name="comment[body]"></textarea>
+  </label>
+
+  <button>Submit Comment</button>
+</form>

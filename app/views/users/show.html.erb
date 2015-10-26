@@ -1,1 +1,19 @@
 <h1><%= @user.username %></h1>
+
+<ul>
+  <% @user.comments.each do |comment| %>
+    <li><%= comment.body %><br><em>author:</em> <%= comment.author.username %></li>
+  <% end %>
+</ul>
+
+<form action="<%= comments_url %>" method="post">
+  <%= auth_token %>
+  <input type='hidden' name='comment[commentable_id]' value='<%= @user.id %>'>
+  <input type='hidden' name='comment[commentable_type]' value='User'>
+
+  <label>Comment:
+    <textarea name="comment[body]"></textarea>
+  </label>
+
+  <button>Submit Comment</button>
+</form>
