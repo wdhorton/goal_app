@@ -1,1 +1,17 @@
-<%= @user.username %>
+<h1><%= @user.username %></h1>
+
+<ul>
+  <% @user.received_comments.each do |comment| %>
+    <li><%= comment.body %><br><em>author:</em> <%= comment.author.username %></li>
+  <% end %>
+</ul>
+
+<form action="<%= user_user_comments_url(@user) %>" method="post">
+  <%= auth_token %>
+
+  <label>Comment:
+    <textarea name="user_comment[body]"></textarea>
+  </label>
+
+  <button>Submit Comment</button>
+</form>

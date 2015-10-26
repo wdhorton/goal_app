@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   after_initialize :ensure_session_token
 
   has_many :goals
+  has_many :posted_comments, class_name: "UserComment", foreign_key: :author_id
+  has_many :received_comments, class_name: "UserComment", foreign_key: :user_id
 
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)
